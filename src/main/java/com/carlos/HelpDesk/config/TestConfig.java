@@ -1,7 +1,6 @@
 package com.carlos.HelpDesk.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
@@ -13,10 +12,12 @@ public class TestConfig {
 
     @Autowired
     private DBService dbService;
+    
+    // Popula a base de dados com os dados necessários para test
 
-    @Bean
     public void instanciaDB(){
         this.dbService.instanciaDB();
     }
+
 
 }
