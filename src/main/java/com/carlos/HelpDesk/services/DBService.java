@@ -26,7 +26,7 @@ public class DBService {
 	private ClienteRepository clienteRepository;
 
     public void instanciaDB() {
-        		Tecnico tec1 = new Tecnico(null, "Valdir Cezar", "58620810030", "CarlosEduardo@gmail.com", "Carlos847");
+        Tecnico tec1 = new Tecnico(null, "Valdir Cezar", "58620810030", "CarlosEduardo@gmail.com", "Carlos847");
 		tec1.addPerfil(Perfil.ADMIN);
 
 		Cliente cli1 = new Cliente(null, "Elayne", "00641922027", "elayne@gmail.com", "123");
@@ -38,5 +38,4 @@ public class DBService {
 		chamadoRepository.saveAll(Arrays.asList(c1));
         
     }
-
 }
