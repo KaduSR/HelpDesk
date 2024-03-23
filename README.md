@@ -1,8 +1,11 @@
-Sistema de HelpDesk Web
+# Sistema de HelpDesk Web
+
+
 Este repositório contém o código-fonte e os recursos relacionados ao desenvolvimento de um sistema de HelpDesk web. O sistema foi projetado para facilitar a gestão e resolução de tickets de suporte técnico, oferecendo uma solução completa e eficiente para empresas e organizações.
 
-Funcionalidades Principais
-Gerenciamento de Tickets: Os usuários podem abrir novos tickets de suporte, acompanhar o status de seus tickets e interagir com os agentes de suporte.
+## Funcionalidades Principais
+
+**Gerenciamento de Tickets:** Os usuários podem abrir novos tickets de suporte, acompanhar o status de seus tickets e interagir com os agentes de suporte.
 Painel Administrativo: Os administradores têm acesso a um painel de controle para gerenciar usuários, categorias de tickets, prioridades e outras configurações do sistema.
 Autenticação e Autorização: O sistema oferece autenticação segura para usuários e controle de acesso baseado em funções para garantir a segurança dos dados.
 Notificações e Alertas: Integração com sistemas de notificação para alertar os usuários sobre atualizações importantes nos tickets.
