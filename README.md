@@ -1,6 +1,7 @@
 # Sistema de HelpDesk Web
 
 ![GitHub language count](https://img.shields.io/github/languages/count/KaduSr/HelpDesk) 
+
 ![GitHub License](https://img.shields.io/github/license/KaduSR/HelpDesk)
 
 
