@@ -1,6 +1,11 @@
 # Sistema de HelpDesk Web
 
-![GitHub language count](https://img.shields.io/github/languages/count/KaduSr/HelpDesk) ![GitHub License](https://img.shields.io/github/license/KaduSR/HelpDesk)
+![GitHub language count](https://img.shields.io/github/languages/count/KaduSr/HelpDesk) 
+
+![GitHub License](https://img.shields.io/github/license/KaduSR/HelpDesk?link=https%3A%2F%2Fgithub.com%2FKaduSR%2FHelpDesk%2Fblob%2Fff648078248ba20a7c7394215d4fae66d62bd1f0%2FLICENSE)
+
+
+
 
 
 Este repositório contém o código-fonte e os recursos relacionados ao desenvolvimento de um sistema de HelpDesk web. O sistema foi projetado para facilitar a gestão e resolução de tickets de suporte técnico, oferecendo uma solução completa e eficiente para empresas e organizações.
