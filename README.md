@@ -2,7 +2,8 @@
 
 ![GitHub language count](https://img.shields.io/github/languages/count/KaduSr/HelpDesk) 
 
-![GitHub License](https://img.shields.io/github/license/KaduSR/HelpDesk)
+![GitHub License](https://img.shields.io/github/license/KaduSR/HelpDesk?link=https%3A%2F%2Fgithub.com%2FKaduSR%2FHelpDesk%2Fblob%2Fmaster%2FLICENSE)
+
 
 
 
