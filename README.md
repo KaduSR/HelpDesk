@@ -42,10 +42,10 @@ Este repositório contém o código-fonte e os recursos relacionados ao desenvol
 
 5. **Execução do Backend:**
 
-  ```bash
-  cd backend
-  mvn spring-boot:run
-  ```
+     ```bash
+     cd backend
+     mvn spring-boot:run
+     ```
 
 4. Acesse o sistema em http://localhost:4200 no seu navegador.
 
