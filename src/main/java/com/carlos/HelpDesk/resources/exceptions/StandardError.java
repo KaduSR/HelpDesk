@@ -7,77 +7,84 @@ import java.io.Serializable;
  * Implementa a interface Serializable para permitir serialização.
  */
 public class StandardError implements Serializable {
-    private static final long serialVersionUID = 1L; // Número de versão para controle de serialização.
 
-    private Long timestamp; // Timestamp do erro.
-    private Integer status; // Código de status HTTP.
-    private String error; // Descrição do erro.
-    private String message; // Mensagem detalhada do erro.
-    private String path; // Caminho do recurso onde ocorreu o erro.
+  private static final long serialVersionUID = 1L; // Número de versão para controle de serialização.
 
-    /**
-     * Construtor padrão.
-     */
-    public StandardError() {
-        super();
-    }
+  private Long timestamp; // Timestamp do erro.
+  private Integer status; // Código de status HTTP.
+  private String error; // Descrição do erro.
+  private String message; // Mensagem detalhada do erro.
+  private String path; // Caminho do recurso onde ocorreu o erro.
 
-    /**
-     * Construtor que inicializa todos os campos da classe.
-     *
-     * @param timestamp O timestamp do erro.
-     * @param status O código de status HTTP.
-     * @param error A descrição do erro.
-     * @param message A mensagem detalhada do erro.
-     * @param path O caminho do recurso onde ocorreu o erro.
-     */
-    public StandardError(Long timestamp, Integer status, String error, String message, String path) {
-        this.timestamp = timestamp;
-        this.status = status;
-        this.error = error;
-        this.message = message;
-        this.path = path;
-    }
+  /**
+   * Construtor padrão.
+   */
+  public StandardError() {
+    super();
+  }
 
-    // Getters e setters para os campos da classe.
+  /**
+   * Construtor que inicializa todos os campos da classe.
+   *
+   * @param timestamp O timestamp do erro.
+   * @param status O código de status HTTP.
+   * @param error A descrição do erro.
+   * @param message A mensagem detalhada do erro.
+   * @param path O caminho do recurso onde ocorreu o erro.
+   */
+  public StandardError(
+    Long timestamp,
+    Integer status,
+    String error,
+    String message,
+    String path
+  ) {
+    this.timestamp = timestamp;
+    this.status = status;
+    this.error = error;
+    this.message = message;
+    this.path = path;
+  }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
+  // Getters e setters para os campos da classe.
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
+  public Long getTimestamp() {
+    return this.timestamp;
+  }
 
-    public Integer getStatus() {
-        return this.status;
-    }
+  public void setTimestamp(Long timestamp) {
+    this.timestamp = timestamp;
+  }
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+  public Integer getStatus() {
+    return this.status;
+  }
 
-    public String getError() {
-        return this.error;
-    }
+  public void setStatus(Integer status) {
+    this.status = status;
+  }
 
-    public void setError(String error) {
-        this.error = error;
-    }
+  public String getError() {
+    return this.error;
+  }
 
-    public String getMessage() {
-        return this.message;
-    }
+  public void setError(String error) {
+    this.error = error;
+  }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+  public String getMessage() {
+    return this.message;
+  }
 
-    public String getPath() {
-        return this.path;
-    }
+  public void setMessage(String message) {
+    this.message = message;
+  }
 
-    public void setPath(String path) {
-        this.path = path;
-    }
+  public String getPath() {
+    return this.path;
+  }
+
+  public void setPath(String path) {
+    this.path = path;
+  }
 }
