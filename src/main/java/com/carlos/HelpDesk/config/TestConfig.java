@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Profile;
 
 import com.carlos.HelpDesk.services.DBService;
 
+import jakarta.annotation.PostConstruct;
+
 /**
  * Esta classe configura a aplicação para o ambiente de teste.
  * Neste perfil de configuração, o banco de dados é populado com os dados necessários para os testes.
@@ -20,6 +22,7 @@ public class TestConfig {
     /**
      * Método para inicialização do banco de dados com os dados necessários para teste.
      */
+   @PostConstruct
     public void instanciaDB() {
         this.dbService.instanciaDB();
     }

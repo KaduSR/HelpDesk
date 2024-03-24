@@ -1,6 +1,7 @@
 package com.carlos.HelpDesk.services;
 
 import java.util.Arrays;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,20 +29,80 @@ public class DBService {
     /**
      * Método para popular o banco de dados com dados de exemplo.
      */
-    public void instanciaDB() {
-        // Cria um técnico com perfil de administrador.
-        Tecnico tec1 = new Tecnico(null, "Valdir Cezar", "58620810030", "CarlosEduardo@gmail.com", "Carlos847");
-		tec1.addPerfil(Perfil.ADMIN);
+	public void instanciaDB() {
+        for (int i = 1; i <= 10; i++) {
+            // Criando um técnico com perfil de administrador
+            Tecnico tecnico = new Tecnico();
+            tecnico.setNome("Nome Técnico " + i);
+            tecnico.setCpf(gerarCPF());
+            tecnico.setEmail("emailtecnico" + i + "@example.com");
+            tecnico.setSenha("senha" + i);
+            tecnico.addPerfil(Perfil.ADMIN);
+            
+            // Criando um cliente
+            Cliente cliente = new Cliente();
+            cliente.setNome("Nome Cliente " + i);
+            cliente.setCpf(gerarCPF());
+            cliente.setEmail("emailcliente" + i + "@example.com");
+            cliente.setSenha("senha" + i);
+            
+            // Criando um chamado associado ao técnico e cliente criados anteriormente
+            Chamado chamado = new Chamado();
+            chamado.setPrioridade(Prioridade.MÉDIA);
+            chamado.setStatus(Status.ANDAMENTO);
+            chamado.setTitulo("Chamado " + i);
+            chamado.setObservacoes("Descrição do Chamado " + i);
+            chamado.setTecnico(tecnico);
+            chamado.setCliente(cliente);
 
-        // Cria um cliente.
-		Cliente cli1 = new Cliente(null, "Elayne", "00641922027", "elayne@gmail.com", "123");
+            // Salvando os objetos no banco de dados
+            tecnicoRepository.save(tecnico);
+            clienteRepository.save(cliente);
+            chamadoRepository.save(chamado);
+        }
+    }
 
-        // Cria um chamado associado ao técnico e ao cliente criados anteriormente.
-		Chamado c1 = new Chamado(null, Prioridade.MÉDIA, Status.ANDAMENTO, "Chamado 01", "Primeiro Chamado", tec1, cli1);
+    private String gerarCPF() {
+        Random rand = new Random();
+        int[] cpf = new int[11];
 
-        // Salva os objetos no banco de dados.
-		tecnicoRepository.saveAll(Arrays.asList(tec1));
-		clienteRepository.saveAll(Arrays.asList(cli1));
-		chamadoRepository.saveAll(Arrays.asList(c1));  
+        // Gera os nove primeiros dígitos do CPF
+        for (int i = 0; i < 9; i++) {
+            cpf[i] = rand.nextInt(10);
+        }
+
+        // Calcula o primeiro dígito verificador
+        cpf[9] = calcularDigitoVerificador(cpf, 9);
+
+        // Calcula o segundo dígito verificador
+        cpf[10] = calcularDigitoVerificador(cpf, 10);
+
+        // Formata o CPF como string
+        StringBuilder cpfString = new StringBuilder();
+        for (int i = 0; i < 11; i++) {
+            cpfString.append(cpf[i]);
+            if (i == 2 || i == 5) {
+                cpfString.append(".");
+            } else if (i == 8) {
+                cpfString.append("-");
+            }
+        }
+
+        return cpfString.toString();
+    }
+
+    private int calcularDigitoVerificador(int[] cpf, int posicao) {
+        int soma = 0;
+        int peso = posicao + 1;
+        for (int i = 0; i < posicao; i++) {
+            soma += cpf[i] * peso;
+            peso--;
+        }
+        int resto = soma % 11;
+        if (resto < 2) {
+            return 0;
+        } else {
+            return 11 - resto;
+        }
     }
 }

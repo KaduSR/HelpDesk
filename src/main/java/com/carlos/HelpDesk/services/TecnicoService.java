@@ -53,6 +53,14 @@ public class TecnicoService {
         oldObj = new Tecnico(objDto);
         return repository.save(oldObj); // Salva as alterações no banco de dados e o retorna.
     }
+
+    public void delete(Integer id) {
+		Tecnico obj = findById(id);
+        if(obj.getChamados().size() > 0){
+            throw new DataIntegrityViolationException("Não é possível deletar um técnico com chamados.");
+        }
+             repository.deleteById(id);
+        }
     
     // Método privado para validar se o CPF e o e-mail fornecidos já existem no banco de dados.
     private void validaPorCpfEmail(TecnicoDto objDTO) {
@@ -69,5 +77,7 @@ public class TecnicoService {
             throw new DataIntegrityViolationException("E-mail já cadastrado no sistema"); 
         }
     }
+
+	
 
 }
