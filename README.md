@@ -61,7 +61,3 @@ Este repositório contém o código-fonte e os recursos relacionados ao desenvol
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue para relatar bugs, sugerir novas funcionalidades ou enviar um pull request com suas contribuições.
 
-
-
-
-
