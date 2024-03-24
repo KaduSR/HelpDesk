@@ -1,10 +1,5 @@
 package com.carlos.HelpDesk.services;
 
-import java.util.Random;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.carlos.HelpDesk.domain.Chamado;
 import com.carlos.HelpDesk.domain.Cliente;
 import com.carlos.HelpDesk.domain.Tecnico;
@@ -14,6 +9,9 @@ import com.carlos.HelpDesk.domain.enums.Status;
 import com.carlos.HelpDesk.repositories.ChamadoRepository;
 import com.carlos.HelpDesk.repositories.ClienteRepository;
 import com.carlos.HelpDesk.repositories.TecnicoRepository;
+import java.util.Random;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class DBService {

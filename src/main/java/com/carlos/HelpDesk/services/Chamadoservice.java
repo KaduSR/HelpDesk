@@ -22,6 +22,7 @@ public class Chamadoservice {
 
   @Autowired
   private TecnicoService tecnicoService;
+
   @Autowired
   private ClienteService clienteService;
 
@@ -47,7 +48,7 @@ public class Chamadoservice {
     Cliente cliente = clienteService.findById(obj.getCliente());
 
     Chamado chamado = new Chamado();
-    if(obj.getId() !=null) {
+    if (obj.getId() != null) {
       chamado.setId(obj.getId());
     }
 
