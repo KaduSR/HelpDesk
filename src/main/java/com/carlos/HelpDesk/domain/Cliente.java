@@ -2,7 +2,9 @@ package com.carlos.HelpDesk.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.carlos.HelpDesk.domain.dtos.ClienteDto;
 import com.carlos.HelpDesk.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -41,6 +43,16 @@ public class Cliente extends Pessoa {
     public Cliente(Integer id, String nome, String cpf, String email, String senha) {
         super(id, nome, cpf, email, senha);
         addPerfil(Perfil.CLIENTE);
+    }
+
+    public Cliente(ClienteDto obj) {
+        this.id = obj.getId();
+        this.nome = obj.getNome();
+        this.cpf = obj.getCpf();
+        this.email = obj.getEmail();
+        this.senha = obj.getSenha();
+        this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+        this.dataCriacao = obj.getDataCriacao();
     }
 
     /**
