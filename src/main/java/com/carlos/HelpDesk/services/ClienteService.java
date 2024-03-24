@@ -24,6 +24,7 @@ public class ClienteService {
   private PessoaRepository pessoaRepository; // Repositório para entidades do tipo Pessoa, usado para validações.
 
   // Método para encontrar um técnico pelo ID.
+  @SuppressWarnings("null")
   public Cliente findById(Integer id) {
     Optional<Cliente> obj = repository.findById(id);
     // Retorna o técnico se encontrado, senão lança uma exceção.
@@ -54,6 +55,7 @@ public class ClienteService {
     return repository.save(oldObj); // Salva as alterações no banco de dados e o retorna.
   }
 
+  @SuppressWarnings("null")
   public void delete(Integer id) {
     Cliente obj = findById(id);
     if (obj.getChamados().size() > 0) {

@@ -25,6 +25,7 @@ public class Chamadoservice {
   @Autowired
   private ClienteService clienteService;
 
+  @SuppressWarnings("null")
   public Chamado findById(Integer id) {
     Optional<Chamado> obj = repository.findById(id);
     return obj.orElseThrow(() ->
@@ -36,6 +37,7 @@ public class Chamadoservice {
     return repository.findAll();
   }
 
+  @SuppressWarnings("null")
   public Chamado create(@Valid ChamadoDTO objDto) {
     return repository.save(newChamado(objDto));
   }
