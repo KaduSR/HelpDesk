@@ -14,6 +14,8 @@ import com.carlos.HelpDesk.repositories.PessoaRepository;
 import com.carlos.HelpDesk.repositories.TecnicoRepository;
 import com.carlos.HelpDesk.services.exceptions.ObjectnotFoundException;
 
+import jakarta.validation.Valid;
+
 @Service
 // Este código representa uma classe de serviço para operações relacionadas a técnicos, que utiliza dois repositórios injetados via Spring (@Autowired).
 public class TecnicoService {
@@ -43,6 +45,15 @@ public class TecnicoService {
         return repository.save(newObj); // Salva o novo técnico no banco de dados e o retorna.
     }
     
+    public Tecnico update(Integer id, @Valid TecnicoDto objDto) {
+        objDto.setId(id);
+        Tecnico oldObj = findById(id); // Busca o técnico por ID.
+        // Atualiza as informações do técnico com base nos dados do DTO
+        validaPorCpfEmail(objDto);
+        oldObj = new Tecnico(objDto);
+        return repository.save(oldObj); // Salva as alterações no banco de dados e o retorna.
+    }
+    
     // Método privado para validar se o CPF e o e-mail fornecidos já existem no banco de dados.
     private void validaPorCpfEmail(TecnicoDto objDTO) {
        Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf()) ; // Busca uma pessoa pelo CPF.
@@ -58,4 +69,5 @@ public class TecnicoService {
             throw new DataIntegrityViolationException("E-mail já cadastrado no sistema"); 
         }
     }
+
 }

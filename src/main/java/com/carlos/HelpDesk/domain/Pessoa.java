@@ -7,6 +7,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.carlos.HelpDesk.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -32,6 +34,7 @@ public abstract class Pessoa implements Serializable {
 
     protected String nome; // Nome da pessoa.
 
+    @CPF
     @Column(unique = true)
     protected String cpf; // CPF da pessoa, único no sistema.
 
