@@ -2,6 +2,7 @@ package com.carlos.HelpDesk.domain.dtos;
 
 import com.carlos.HelpDesk.domain.Chamado;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -17,12 +18,24 @@ public class ChamadoDTO implements Serializable {
   @JsonFormat(pattern = "dd/MM/yyyy")
   private LocalDate dataFechamento; // Data de fechamento do chamado.
 
+  @NotNull(message = "O campo Prioridade é obrigatório.")
   private Integer prioridade; // Prioridade do chamado.
+
+  @NotNull(message = "O campo Status é obrigatório.")
   private Integer status; // Status do chamado.
+
+  @NotNull(message = "O campo Titulo é obrigatório.")
   private String titulo; // Título do chamado.
+
+  @NotNull(message = "O campo Observações é obrigatório.")
   private String observacoes; // Observações do chamado.
+
+  @NotNull(message = "O campo Tecnico é obrigatório.")
   private Integer tecnico; // Técnico responsável pelo chamado.
+
+  @NotNull(message = "O campo Cliente é obrigatório.")
   private Integer cliente; // Cliente que abriu o chamado.
+
   private String nomeTecnico; // Nome completo do técnico responsável pelo chamado.
   private String nomeCliente; // Nome Completo do cliente responsável pelo chamado.
 
