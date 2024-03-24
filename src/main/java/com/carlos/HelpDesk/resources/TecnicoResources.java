@@ -14,6 +14,8 @@ import com.carlos.HelpDesk.domain.Tecnico;
 import com.carlos.HelpDesk.domain.dtos.TecnicoDto;
 import com.carlos.HelpDesk.services.TecnicoService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,7 +46,7 @@ public class TecnicoResources {
     }
 
     @PostMapping
-    public ResponseEntity<TecnicoDto> create(@RequestBody TecnicoDto objDto) {
+    public ResponseEntity<TecnicoDto> create(@Valid @RequestBody TecnicoDto objDto) {
         Tecnico newObj = service.create(objDto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
         return ResponseEntity.created(uri).build() ;//.body(new TecnicoDto(newObj));
