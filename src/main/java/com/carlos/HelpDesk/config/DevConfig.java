@@ -8,20 +8,30 @@ import org.springframework.context.annotation.Profile;
 
 import com.carlos.HelpDesk.services.DBService;
 
+/**
+ * Esta classe configura a aplicação para o ambiente de desenvolvimento.
+ * Neste perfil de configuração, o banco de dados é inicializado conforme a configuração de hibernate.ddl-auto.
+ */
 @Configuration
 @Profile("dev")
 public class DevConfig {
 
     @Autowired
-    private DBService dbService;
+    private DBService dbService; // Serviço para inicialização do banco de dados
 
     @Value("${spring.jpa.hibernate.ddl-auto}")
-    private String value;
+    private String value; // Valor da propriedade spring.jpa.hibernate.ddl-auto
 
+    /**
+     * Método para inicialização do banco de dados com os dados necessários se a propriedade spring.jpa.hibernate.ddl-auto for "create".
+     * 
+     * @return true se a propriedade for "create", caso contrário retorna false.
+     */
     @Bean
-    public boolean instanciaDB(){
-        if(value.equals("create")) {
+    public boolean instanciaDB() {
+        if (value.equals("create")) {
             this.dbService.instanciaDB();
+            return true;
         }
         return false;
     }

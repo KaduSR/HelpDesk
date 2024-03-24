@@ -2,6 +2,7 @@ package com.carlos.HelpDesk.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 import com.carlos.HelpDesk.domain.enums.Prioridade;
 import com.carlos.HelpDesk.domain.enums.Status;
@@ -14,50 +15,65 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-import java.util.Objects;
-
-
-
-
+/**
+ * Esta classe representa a entidade Chamado.
+ */
 @Entity
-public class Chamado  implements Serializable {
+public class Chamado implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id; // ID do chamado.
 
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataAbertura = LocalDate.now();
+    private LocalDate dataAbertura = LocalDate.now(); // Data de abertura do chamado.
+
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataFechamento;
+    private LocalDate dataFechamento; // Data de fechamento do chamado.
 
-
-    private Prioridade prioridade;
-    private Status status;
-    private String titulo;
-    private String obervacoes;
-
-    @ManyToOne
-    @JoinColumn (name = "tecnico_id")
-    private Tecnico tecnico;
+    private Prioridade prioridade; // Prioridade do chamado.
+    private Status status; // Status do chamado.
+    private String titulo; // Título do chamado.
+    private String observacoes; // Observações do chamado.
 
     @ManyToOne
-    @JoinColumn (name = "cliente_id")
-    private Cliente cliente;
+    @JoinColumn(name = "tecnico_id")
+    private Tecnico tecnico; // Técnico responsável pelo chamado.
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente; // Cliente que abriu o chamado.
+
+    /**
+     * Construtor padrão.
+     */
     public Chamado() {
         super();
     }
 
-    public Chamado(Integer id, Prioridade prioridade, Status status, String titulo, String obervacoes, Tecnico tecnico, Cliente cliente) {
+    /**
+     * Construtor que inicializa os atributos da classe.
+     *
+     * @param id O ID do chamado.
+     * @param prioridade A prioridade do chamado.
+     * @param status O status do chamado.
+     * @param titulo O título do chamado.
+     * @param observacoes As observações do chamado.
+     * @param tecnico O técnico responsável pelo chamado.
+     * @param cliente O cliente que abriu o chamado.
+     */
+    public Chamado(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Tecnico tecnico, Cliente cliente) {
         this.id = id;
         this.prioridade = prioridade;
         this.status = status;
         this.titulo = titulo;
-        this.obervacoes = obervacoes;
+        this.observacoes = observacoes;
         this.tecnico = tecnico;
         this.cliente = cliente;
     }
+
+    // Getters e setters para os atributos da classe.
 
     public Integer getId() {
         return this.id;
@@ -107,12 +123,12 @@ public class Chamado  implements Serializable {
         this.titulo = titulo;
     }
 
-    public String getObervacoes() {
-        return this.obervacoes;
+    public String getObservacoes() {
+        return this.observacoes;
     }
 
-    public void setObervacoes(String obervacoes) {
-        this.obervacoes = obervacoes;
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
     }
 
     public Tecnico getTecnico() {
@@ -130,8 +146,8 @@ public class Chamado  implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
 
+    // hashCode e equals para comparar objetos da classe com base no ID.
 
     @Override
     public int hashCode() {
@@ -151,7 +167,4 @@ public class Chamado  implements Serializable {
         Chamado chamado = (Chamado) o;
         return Objects.equals(id, chamado.id);
     }
-
-
-        
 }

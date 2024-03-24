@@ -21,35 +21,51 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
-
-
-
+/**
+ * Esta classe representa um controlador REST para recursos relacionados a técnicos.
+ * Define endpoints para buscar, listar e criar técnicos.
+ */
 @RestController
 @RequestMapping(value = "/tecnicos")
 public class TecnicoResources {
 
     @Autowired
-    private TecnicoService service;
+    private TecnicoService service; // Serviço para operações relacionadas a técnicos.
 
+    /**
+     * Endpoint para buscar um técnico pelo ID.
+     *
+     * @param id O ID do técnico a ser buscado.
+     * @return Um ResponseEntity contendo o técnico encontrado ou HttpStatus.NOT_FOUND se não encontrado.
+     */
     @GetMapping(value = "/{id}")
     public ResponseEntity<TecnicoDto> findById(@PathVariable Integer id) {
         Tecnico obj = service.findById(id);
         return ResponseEntity.ok().body(new TecnicoDto(obj));
     }
 
-    @GetMapping 
-    public ResponseEntity<List<TecnicoDto>> findAll(){
+    /**
+     * Endpoint para listar todos os técnicos.
+     *
+     * @return Um ResponseEntity contendo a lista de técnicos ou uma lista vazia se não houver nenhum técnico.
+     */
+    @GetMapping
+    public ResponseEntity<List<TecnicoDto>> findAll() {
         List<Tecnico> list = service.findAll();
         List<TecnicoDto> listDTO = list.stream().map(obj -> new TecnicoDto(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDTO);
     }
 
+    /**
+     * Endpoint para criar um novo técnico.
+     *
+     * @param objDto O DTO (Data Transfer Object) contendo os dados do novo técnico.
+     * @return Um ResponseEntity contendo o cabeçalho HTTP com a URI do recurso criado.
+     */
     @PostMapping
     public ResponseEntity<TecnicoDto> create(@Valid @RequestBody TecnicoDto objDto) {
         Tecnico newObj = service.create(objDto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
-        return ResponseEntity.created(uri).build() ;//.body(new TecnicoDto(newObj));
-
+        return ResponseEntity.created(uri).build();
     }
 }

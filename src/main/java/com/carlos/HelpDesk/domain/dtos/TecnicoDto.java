@@ -12,29 +12,45 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.validation.constraints.NotNull;
 
-public class TecnicoDto  implements Serializable{
+/**
+ * Esta classe representa o DTO (Data Transfer Object) para a entidade Tecnico.
+ */
+public class TecnicoDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    protected Integer id;
+    protected Integer id; // ID do técnico.
+    
     @NotNull(message = "O campo Nome é obrigatório.")
-    protected String nome;
+    protected String nome; // Nome do técnico.
+    
     @NotNull(message = "O campo CPF é obrigatório")
-    protected String cpf;
+    protected String cpf; // CPF do técnico.
+    
     @NotNull(message = "O campo E-mail é obrigatório")
-    protected String email;
+    protected String email; // E-mail do técnico.
+    
     @NotNull(message = "O campo Senha é obrigatório")
-    protected String senha;
-    protected Set<Integer> perfis = new HashSet<> ();
-
+    protected String senha; // Senha do técnico.
+    
+    protected Set<Integer> perfis = new HashSet<>(); // Conjunto de perfis do técnico.
+    
     @JsonFormat(pattern = "dd/MM/yyyy")
-    protected LocalDate dataCriacao = LocalDate.now();
+    protected LocalDate dataCriacao = LocalDate.now(); // Data de criação do técnico.
 
+    /**
+     * Construtor padrão.
+     * Inicializa o conjunto de perfis com o perfil CLIENTE.
+     */
     public TecnicoDto() {
         super();
-        addPerfil(Perfil.CLIENTE );
+        addPerfil(Perfil.CLIENTE);
     }
 
-
+    /**
+     * Construtor que inicializa os atributos do DTO com base em um objeto Tecnico.
+     *
+     * @param obj O objeto Tecnico a partir do qual os atributos do DTO serão inicializados.
+     */
     public TecnicoDto(Tecnico obj) {
         this.id = obj.getId();
         this.nome = obj.getNome();
@@ -46,6 +62,7 @@ public class TecnicoDto  implements Serializable{
         addPerfil(Perfil.CLIENTE);
     }
 
+    // Getters e setters para os atributos do DTO.
 
     public Integer getId() {
         return this.id;
@@ -102,5 +119,4 @@ public class TecnicoDto  implements Serializable{
     public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
-    
 }
