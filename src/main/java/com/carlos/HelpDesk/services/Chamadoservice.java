@@ -9,6 +9,7 @@ import com.carlos.HelpDesk.domain.enums.Status;
 import com.carlos.HelpDesk.repositories.ChamadoRepository;
 import com.carlos.HelpDesk.services.exceptions.ObjectnotFoundException;
 import jakarta.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class Chamadoservice {
   public Chamado findById(Integer id) {
     Optional<Chamado> obj = repository.findById(id);
     return obj.orElseThrow(() ->
-      new ObjectnotFoundException("Objeto nã encontrado! Id: " + id)
+      new ObjectnotFoundException("Objeto não encontrado! Id: " + id)
     );
   }
 
@@ -37,13 +38,18 @@ public class Chamadoservice {
     return repository.findAll();
   }
 
-  public void delete(Integer id) {
-    throw new UnsupportedOperationException("Unimplemented method 'delete'");
-  }
-
   public Chamado create(@Valid ChamadoDTO objDto) {
     return repository.save(newChamado(objDto));
   }
+
+  public Chamado update(Integer id, @Valid ChamadoDTO objDto) {
+    objDto.setId(id);
+    Chamado oldObj = findById(id);
+    oldObj = newChamado(objDto);
+    return repository.save(oldObj);
+  }
+
+  //metodo para criar um novo objeto de chamado a partir do DTO
 
   private Chamado newChamado(ChamadoDTO obj) {
     Tecnico tecnico = tecnicoService.findById(obj.getTecnico());
@@ -52,6 +58,10 @@ public class Chamadoservice {
     Chamado chamado = new Chamado();
     if (obj.getId() != null) {
       chamado.setId(obj.getId());
+    }
+
+    if (obj.getStatus().equals(2)) {
+      chamado.setDataFechamento(LocalDate.now());
     }
 
     chamado.setTecnico(tecnico);

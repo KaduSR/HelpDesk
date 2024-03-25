@@ -24,7 +24,7 @@ public class ClienteService {
   private PessoaRepository pessoaRepository; // Repositório para entidades do tipo Pessoa, usado para validações.
 
   // Método para encontrar um técnico pelo ID.
-  
+
   public Cliente findById(Integer id) {
     Optional<Cliente> obj = repository.findById(id);
     // Retorna o técnico se encontrado, senão lança uma exceção.
@@ -53,17 +53,6 @@ public class ClienteService {
     validaPorCpfEmail(objDto);
     oldObj = new Cliente(objDto);
     return repository.save(oldObj); // Salva as alterações no banco de dados e o retorna.
-  }
-
-  
-  public void delete(Integer id) {
-    Cliente obj = findById(id);
-    if (obj.getChamados().size() > 0) {
-      throw new DataIntegrityViolationException(
-        "Não é possível deletar um técnico com chamados."
-      );
-    }
-    repository.deleteById(id);
   }
 
   // Método privado para validar se o CPF e o e-mail fornecidos já existem no banco de dados.
