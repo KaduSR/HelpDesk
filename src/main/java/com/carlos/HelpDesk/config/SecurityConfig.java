@@ -1,8 +1,7 @@
 package com.carlos.HelpDesk.config;
 
-import com.carlos.HelpDesk.security.JWTAuthorizationFilter;
-import com.carlos.HelpDesk.security.JWTUtil;
 import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +19,10 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import com.carlos.HelpDesk.security.JWTAuthenticationFilter;
+import com.carlos.HelpDesk.security.JWTAuthorizationFilter;
+import com.carlos.HelpDesk.security.JWTUtil;
 
 @Configuration
 @EnableWebSecurity
@@ -64,9 +67,17 @@ public class SecurityConfig {
 
     // Adiciona os filtros de autenticação JWT e autorização JWT
     http.addFilter(
-      new JWTAuthorizationFilter(
+      new JWTAuthenticationFilter(
         authenticationManager(authConfiguration),
         jwtUtil
+      )
+    );
+
+    http.addFilter(
+      new JWTAuthorizationFilter(
+        authenticationManager(authConfiguration),
+        jwtUtil,
+        userDetailsService
       )
     );
 

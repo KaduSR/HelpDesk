@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -26,6 +27,36 @@ public class JWTUtil {
                .setExpiration(new Date(System.currentTimeMillis() + expiration)) // Define a data de expiração do token
                .signWith(SignatureAlgorithm.HS512, secret.getBytes()) // Assina o token com o algoritmo HS512 e o segredo fornecido
                .compact(); // Compacta o token em uma String
+    }
+
+    public boolean tokenValido(String token) {
+        Claims claims = getClaims(token);
+        if (claims != null){
+            String username = claims.getSubject();
+            Date expirationDate = claims.getExpiration();
+            Date now = new Date(System.currentTimeMillis());
+
+            if(username != null && expirationDate != null && now.before(expirationDate)) {
+                return true;
+            }
+        }
+        return false; // Retorna false se alguma das condições não for satisfeita
+    }
+
+    private Claims getClaims(String token) {
+       try {
+        return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJwt(token).getBody();
+       } catch (Exception e) {
+            return null;
+       }
+    }
+
+    public String getUsername(String token) {
+        Claims claims = getClaims(token);
+        if (claims != null) {
+            return claims.getSubject();
+        }
+        return null;
     }
     
 }

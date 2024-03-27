@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,6 +67,8 @@ public class TecnicoResources {
    * @param objDto O DTO (Data Transfer Object) contendo os dados do novo técnico.
    * @return Um ResponseEntity contendo o cabeçalho HTTP com a URI do recurso criado.
    */
+
+   @PreAuthorize("hasAnyRole('ADMIN')")
   @PostMapping
   public ResponseEntity<TecnicoDto> create(
     @Valid @RequestBody TecnicoDto objDto
@@ -79,6 +82,7 @@ public class TecnicoResources {
     return ResponseEntity.created(uri).build();
   }
 
+  @PreAuthorize("hasAnyRole('ADMIN')")
   @PutMapping(value = "/{id}")
   public ResponseEntity<TecnicoDto> update(
     @PathVariable Integer id,
@@ -88,6 +92,7 @@ public class TecnicoResources {
     return ResponseEntity.ok().body(new TecnicoDto(obj));
   }
 
+  @PreAuthorize("hasAnyRole('ADMIN')")
   @DeleteMapping(value = "/{id}")
   public ResponseEntity<TecnicoDto> delete(@PathVariable Integer id) {
     service.delete(id);
