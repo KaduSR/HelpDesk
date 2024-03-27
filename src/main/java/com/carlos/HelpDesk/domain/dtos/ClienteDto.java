@@ -1,14 +1,16 @@
 package com.carlos.HelpDesk.domain.dtos;
 
-import com.carlos.HelpDesk.domain.Cliente;
-import com.carlos.HelpDesk.domain.enums.Perfil;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import com.carlos.HelpDesk.domain.Cliente;
+import com.carlos.HelpDesk.domain.enums.Perfil;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.validation.constraints.NotNull;
 
 /**
  * Esta classe representa o DTO (Data Transfer Object) para a entidade Cliente.

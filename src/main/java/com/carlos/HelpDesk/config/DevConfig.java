@@ -28,8 +28,8 @@ public class DevConfig {
    */
   @Bean
   public boolean instanciaDB() {
-    if (value.equals("create")) {
-      this.dbService.instanciaDB();
+    if (value.equals("create")) { // Verifica se a propriedade é "create"
+      this.dbService.instanciaDB(); // Inicializa o banco de dados usando o serviço DBService
       return true;
     }
     return false;

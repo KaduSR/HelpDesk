@@ -1,12 +1,9 @@
 package com.carlos.HelpDesk.resources;
 
-import com.carlos.HelpDesk.domain.Tecnico;
-import com.carlos.HelpDesk.domain.dtos.TecnicoDto;
-import com.carlos.HelpDesk.services.TecnicoService;
-import jakarta.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.carlos.HelpDesk.domain.Tecnico;
+import com.carlos.HelpDesk.domain.dtos.TecnicoDto;
+import com.carlos.HelpDesk.services.TecnicoService;
+
+import jakarta.validation.Valid;
 
 /**
  * Esta classe representa um controlador REST para recursos relacionados a técnicos.

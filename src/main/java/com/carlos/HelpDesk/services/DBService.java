@@ -11,6 +11,7 @@ import com.carlos.HelpDesk.repositories.ClienteRepository;
 import com.carlos.HelpDesk.repositories.TecnicoRepository;
 import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,6 +26,9 @@ public class DBService {
   @Autowired
   private ClienteRepository clienteRepository; // Repositório para entidades de clientes.
 
+  @Autowired
+  private BCryptPasswordEncoder encoder; // Encriptador de senhas.
+
   /**
    * Método para popular o banco de dados com dados de exemplo.
    */
@@ -35,7 +39,7 @@ public class DBService {
       tecnico.setNome("Nome Técnico " + i);
       tecnico.setCpf(gerarCPF());
       tecnico.setEmail("emailtecnico" + i + "@example.com");
-      tecnico.setSenha("senha" + i);
+      tecnico.setSenha(encoder.encode("senha") + i);
       tecnico.addPerfil(Perfil.ADMIN);
 
       // Criando um cliente
@@ -43,7 +47,7 @@ public class DBService {
       cliente.setNome("Nome Cliente " + i);
       cliente.setCpf(gerarCPF());
       cliente.setEmail("emailcliente" + i + "@example.com");
-      cliente.setSenha("senha" + i);
+      cliente.setSenha(encoder.encode("senha") + i);
 
       // Criando um chamado associado ao técnico e cliente criados anteriormente
       Chamado chamado = new Chamado();

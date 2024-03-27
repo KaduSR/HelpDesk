@@ -1,13 +1,15 @@
 package com.carlos.HelpDesk.domain;
 
-import com.carlos.HelpDesk.domain.dtos.TecnicoDto;
-import com.carlos.HelpDesk.domain.enums.Perfil;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.carlos.HelpDesk.domain.dtos.TecnicoDto;
+import com.carlos.HelpDesk.domain.enums.Perfil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 
 /**
  * Esta classe representa a entidade Tecnico, que estende a classe Pessoa.

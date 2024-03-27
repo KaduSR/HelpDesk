@@ -1,7 +1,5 @@
 package com.carlos.HelpDesk.resources.exceptions;
 
-import com.carlos.HelpDesk.services.exceptions.ObjectnotFoundException;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +7,10 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import com.carlos.HelpDesk.services.exceptions.ObjectnotFoundException;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * Esta classe lida com exceções que ocorrem durante a execução da aplicação.

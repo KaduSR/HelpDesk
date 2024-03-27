@@ -1,17 +1,21 @@
 package com.carlos.HelpDesk.services;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import com.carlos.HelpDesk.domain.Pessoa;
 import com.carlos.HelpDesk.domain.Tecnico;
 import com.carlos.HelpDesk.domain.dtos.TecnicoDto;
 import com.carlos.HelpDesk.repositories.PessoaRepository;
 import com.carlos.HelpDesk.repositories.TecnicoRepository;
 import com.carlos.HelpDesk.services.exceptions.ObjectnotFoundException;
+
 import jakarta.validation.Valid;
-import java.util.List;
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Service;
 
 @Service
 // Este código representa uma classe de serviço para operações relacionadas a técnicos, que utiliza dois repositórios injetados via Spring (@Autowired).
@@ -22,6 +26,9 @@ public class TecnicoService {
 
   @Autowired
   private PessoaRepository pessoaRepository; // Repositório para entidades do tipo Pessoa, usado para validações.
+
+  @Autowired
+  private BCryptPasswordEncoder encoder;
 
   // Método para encontrar um técnico pelo ID.
   
@@ -48,6 +55,7 @@ public class TecnicoService {
 
   public Tecnico update(Integer id, @Valid TecnicoDto objDto) {
     objDto.setId(id);
+    objDto.setSenha((encoder.encode(objDto.getSenha())));//Encripta a senha do técnico
     Tecnico oldObj = findById(id); // Busca o técnico por ID.
     // Atualiza as informações do técnico com base nos dados do DTO
     validaPorCpfEmail(objDto);

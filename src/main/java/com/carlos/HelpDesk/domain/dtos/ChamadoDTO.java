@@ -1,10 +1,12 @@
 package com.carlos.HelpDesk.domain.dtos;
 
-import com.carlos.HelpDesk.domain.Chamado;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
+
+import com.carlos.HelpDesk.domain.Chamado;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.validation.constraints.NotNull;
 
 public class ChamadoDTO implements Serializable {
 
