@@ -38,7 +38,7 @@ public class DBService {
       Tecnico tecnico = new Tecnico();
       tecnico.setNome("Nome Técnico " + i);
       tecnico.setCpf(gerarCPF());
-      tecnico.setEmail("emailtecnico" + i + "@example.com");
+      tecnico.setEmail("emailtecnico" + i + "@gmail.com");
       tecnico.setSenha(encoder.encode("senha") + i);
       tecnico.addPerfil(Perfil.ADMIN);
 
@@ -46,7 +46,7 @@ public class DBService {
       Cliente cliente = new Cliente();
       cliente.setNome("Nome Cliente " + i);
       cliente.setCpf(gerarCPF());
-      cliente.setEmail("emailcliente" + i + "@example.com");
+      cliente.setEmail("emailcliente" + i + "@gmail.com");
       cliente.setSenha(encoder.encode("senha") + i);
 
       // Criando um chamado associado ao técnico e cliente criados anteriormente

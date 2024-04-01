@@ -30,11 +30,7 @@ import com.carlos.HelpDesk.security.JWTUtil;
 public class SecurityConfig {
 
   // Define os endpoints públicos que não exigem autenticação
-  private static final String[] PUBLIC_MATCHERS = {
-    "/**",
-    "/h2/**",
-    "/login/**",
-  };
+  private static final String[] PUBLIC_MATCHERS = {"/h2-console/**"};
 
   @Autowired
   private Environment env;
