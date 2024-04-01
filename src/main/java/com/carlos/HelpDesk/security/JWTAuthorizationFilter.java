@@ -33,22 +33,30 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     HttpServletResponse response,
     FilterChain chain
   ) throws IOException, ServletException {
+    // Obtém o cabeçalho Authorization do request
     String header = request.getHeader("Authorization");
     if (header != null && header.startsWith("Bearer")) {
-      UsernamePasswordAuthenticationToken authToken = getAuthentication(
-        header.substring(7)
-      );
+      // Remove o prefixo "Bearer " para obter apenas o token JWT
+      String token = header.substring(7);
+      // Obtém a autenticação a partir do token JWT
+      UsernamePasswordAuthenticationToken authToken = getAuthentication(token);
       if (authToken != null) {
+        // Define a autenticação no contexto de segurança
         SecurityContextHolder.getContext().setAuthentication(authToken);
       }
     }
+    // Continua a cadeia de filtros
     chain.doFilter(request, response);
   }
 
   private UsernamePasswordAuthenticationToken getAuthentication(String token) {
+    // Verifica se o token JWT é válido
     if(jwtUtil.tokenValido(token)){
+       // Obtém o nome de usuário a partir do token
        String username = jwtUtil.getUsername(token);
+       // Obtém os detalhes do usuário com base no nome de usuário
        UserDetails details = userDetailsService.loadUserByUsername(username);
+       // Retorna uma instância de autenticação com o nome de usuário, nenhuma senha e as autorizações do usuário
        return new UsernamePasswordAuthenticationToken(details.getUsername(), "null", details.getAuthorities());
     }
     return null;
