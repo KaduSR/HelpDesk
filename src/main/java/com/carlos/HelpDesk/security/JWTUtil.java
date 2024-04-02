@@ -21,6 +21,7 @@ public class JWTUtil {
     private String secret;
 
     // Método para gerar um token JWT com base no e-mail fornecido
+    @SuppressWarnings("deprecation")
     public String generateToken(String email) {
        return Jwts.builder()
                .setSubject(email) // Define o assunto do token como o e-mail fornecido
@@ -43,6 +44,7 @@ public class JWTUtil {
         return false; // Retorna false se alguma das condições não for satisfeita
     }
 
+    @SuppressWarnings("deprecation")
     private Claims getClaims(String token) {
        try {
         return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token).getBody();
