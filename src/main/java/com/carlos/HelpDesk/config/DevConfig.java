@@ -1,11 +1,12 @@
 package com.carlos.HelpDesk.config;
 
-import com.carlos.HelpDesk.services.DBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+
+import com.carlos.HelpDesk.services.DBService;
 
 /**
  * Esta classe configura a aplicação para o ambiente de desenvolvimento.
