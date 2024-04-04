@@ -1,5 +1,8 @@
 package com.carlos.HelpDesk.domain.dtos;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+@CrossOrigin(origins = "http://localhost:4200/") 
 public class CredenciaisDTO {
     
     private String email;

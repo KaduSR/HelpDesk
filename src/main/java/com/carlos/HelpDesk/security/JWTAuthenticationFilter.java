@@ -47,9 +47,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			Authentication authResult) throws IOException, ServletException {
 		String username = ((UserSS) authResult.getPrincipal()).getUsername();
 		String token = jwtUtil.generateToken(username);
-		response.setHeader("access-control-expose-headers", "Authorization");
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET , OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, enctype , Location");
+		response.setHeader("Access-Control-Allow-Expose-Headers", "Authorization");
 		response.setHeader("Authorization", "Bearer " + token);
-		response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 	}
 
 	@Override
