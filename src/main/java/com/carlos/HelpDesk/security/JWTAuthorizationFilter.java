@@ -51,13 +51,17 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
   private UsernamePasswordAuthenticationToken getAuthentication(String token) {
     // Verifica se o token JWT é válido
-    if(jwtUtil.tokenValido(token)){
-       // Obtém o nome de usuário a partir do token
-       String username = jwtUtil.getUsername(token);
-       // Obtém os detalhes do usuário com base no nome de usuário
-       UserDetails details = userDetailsService.loadUserByUsername(username);
-       // Retorna uma instância de autenticação com o nome de usuário, nenhuma senha e as autorizações do usuário
-       return new UsernamePasswordAuthenticationToken(details.getUsername(), "null", details.getAuthorities());
+    if (jwtUtil.tokenValido(token)) {
+      // Obtém o nome de usuário a partir do token
+      String username = jwtUtil.getUsername(token);
+      // Obtém os detalhes do usuário com base no nome de usuário
+      UserDetails details = userDetailsService.loadUserByUsername(username);
+      // Retorna uma instância de autenticação com o nome de usuário, nenhuma senha e as autorizações do usuário
+      return new UsernamePasswordAuthenticationToken(
+        details.getUsername(),
+        "null",
+        details.getAuthorities()
+      );
     }
     return null;
   }
