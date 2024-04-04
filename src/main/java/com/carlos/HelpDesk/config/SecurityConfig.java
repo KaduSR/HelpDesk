@@ -27,17 +27,12 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class SecurityConfig {
 
-<<<<<<< HEAD
   // Define os endpoints públicos que não exigem autenticação
   private static final String[] PUBLIC_MATCHERS = {
     "/**",
     "/h2/**",
     "/login/**",
   };
-=======
-    // Define os endpoints públicos que não exigem autenticação
-    private static final String[] PUBLIC_MATCHERS = { "/h2-console/**", "/login/" };
->>>>>>> 0bce57c8c3e05dbb2be28c550c3771f208965544
 
   @Autowired
   private Environment env;
